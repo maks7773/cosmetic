@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    font-family: 'Manrope';
+}
+
+.head-content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    box-sizing: border-box;
+    padding: 0 200px;
+    background-color: white;
+    z-index: 1000;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.links-head-content {
+    display: flex;
+    align-items: center;
+    gap: 200px;
+}
+
+.links {
+    display: flex;
+    gap: 50px;
+
+}
+
+.header-link {
+    text-decoration: none;
+    font-size: 24px;
+    color: black;
+}
+
+.header-link:active {
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.cart-logo {
+    width: 80px;
+}
+
+.ad {
+    display: flex;
+    margin-top: 100px;
+    height:600px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("/1646695459_1-abrakadabra-fun-p-rozovii-fon-kosmetika-1.jpg");
+}
+
+.ad-text {
+    display: flex;
+    flex-direction: column;
+    margin: 150px 500px;
+}
+
+.go-shop {
+    width: 360px;
+}
