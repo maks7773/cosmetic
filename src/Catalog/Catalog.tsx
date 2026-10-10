@@ -2,7 +2,11 @@ import products from "../data/products";
 import ProductCard from "../ProductCard/ProductCard";
 import "./Catalog.css"
 
-function Catalog() {
+type CatalogProps = {
+  onBuy: (id:number) => void
+}
+
+function Catalog(props: CatalogProps) {
   return (
     <>
       <h1 className="title">Каталог</h1>
@@ -15,6 +19,7 @@ function Catalog() {
               name={pr.name}
               price={pr.price}
               img={pr.img}
+              onBuy={props.onBuy}
             />
           );
         })}

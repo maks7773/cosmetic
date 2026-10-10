@@ -1,6 +1,12 @@
 import "./Header.css";
 
-function Header() {
+type HeaderProps = {
+  totalCount: number;
+  isCartOpen: boolean;
+  setIsCartOpen: (value: boolean) => void;
+}
+
+function Header(props: HeaderProps) {
   return (
     <header>
       <div className="head-content">
@@ -20,13 +26,13 @@ function Header() {
               Контакты
             </a>
           </div>
-          <div className="cart-logo">
+          <div className="cart-logo" onClick={() => props.setIsCartOpen(!props.isCartOpen)}>
             <img
               src="/710d9cf71f940ac47a8e8ef289f26d4b.jpg"
               className="cart-logo"
               alt=""
             />
-            <span className="cart-count"></span>
+            <span className="cart-count">{props.totalCount}</span>
           </div>
         </div>
       </div>

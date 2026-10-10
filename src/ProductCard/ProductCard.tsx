@@ -8,7 +8,7 @@ function ProductCard(props: propsProductCard) {
       <h2 className="product-name">{props.name}</h2>
       <div className="cost-btn">
         <p className="cost">{props.price} ₽</p>
-        <button className="in-cart">В корзину</button>
+        <button className="in-cart" onClick={() => props.onBuy(props.id)}>В корзину</button>
       </div>
     </div>
   );
