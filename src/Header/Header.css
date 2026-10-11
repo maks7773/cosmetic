@@ -1,71 +1,241 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
-* {
-    margin: 0;
-    font-family: 'Manrope';
+/* ===== Шапка ===== */
+header {
+  width: 100%;
+  background: #faf7f2;
+  color: #302b27;
 }
 
 .head-content {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100px;
-    box-sizing: border-box;
-    padding: 0 200px;
-    background-color: white;
-    z-index: 1000;
-    height: 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    
+  min-height: 100px;
+  padding: 20px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+  border-bottom: 1px solid #e9e1d7;
 }
 
+.brand-name {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 36px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+/* Навигация и корзина */
 .links-head-content {
-    display: flex;
-    align-items: center;
-    gap: 200px;
+  display: flex;
+  align-items: center;
+  gap: 35px;
 }
 
 .links {
-    display: flex;
-    gap: 50px;
-
+  display: flex;
+  align-items: center;
+  gap: 30px;
 }
 
 .header-link {
-    text-decoration: none;
-    font-size: 24px;
-    color: black;
+  position: relative;
+  color: #514940;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s ease;
 }
 
-.header-link:active {
-    text-decoration: none;
-    font-size: 24px;
-    font-weight: 800;
+.header-link:hover {
+  color: #a47760;
 }
 
+.header-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 1px;
+  background: #a47760;
+  transition: width 0.2s ease;
+}
+
+.header-link:hover::after {
+  width: 100%;
+}
+
+/* Корзина */
 .cart-logo {
-    width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  cursor: pointer;
 }
 
+.cart-logo img {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.cart-count {
+  min-width: 23px;
+  height: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  border-radius: 50%;
+  background: #e8d9c9;
+  color: #302b27;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ===== Главный баннер ===== */
 .ad {
-    display: flex;
-    margin-top: 100px;
-    height:600px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-image: url("/1646695459_1-abrakadabra-fun-p-rozovii-fon-kosmetika-1.jpg");
+  min-height: 390px;
+  padding: 70px 8%;
+  display: flex;
+  align-items: center;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 222, 251, 0.97) 0%,
+      rgba(248, 174, 226, 0.85) 45%,
+      rgba(255, 0, 234, 0.15) 100%
+    ),
+    #e8d9c9;
+  background-size: cover;
+  background-position: center;
 }
 
 .ad-text {
-    display: flex;
-    flex-direction: column;
-    margin: 150px 500px;
+  max-width: 520px;
 }
 
+.ad-text h1 {
+  margin: 0 0 18px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(42px, 5vw, 64px);
+  line-height: 1.05;
+  font-weight: 500;
+  letter-spacing: -1px;
+}
+
+.ad-text p {
+  margin: 0 0 30px;
+  color: #71685e;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* Кнопка перехода к каталогу */
 .go-shop {
-    width: 360px;
+  padding: 14px 28px;
+  border: 1px solid #302b27;
+  border-radius: 3px;
+  background: #302b27;
+  color: #fffdf9;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.go-shop:hover {
+  background: transparent;
+  color: #302b27;
+}
+
+/* ===== Планшеты ===== */
+@media (max-width: 850px) {
+  .head-content {
+    padding: 20px 5%;
+    gap: 20px;
+  }
+
+  .brand-name {
+    font-size: 30px;
+  }
+
+  .links-head-content {
+    gap: 22px;
+  }
+
+  .links {
+    gap: 18px;
+  }
+
+  .header-link {
+    font-size: 13px;
+  }
+
+  .ad {
+    min-height: 340px;
+    padding: 55px 6%;
+  }
+}
+
+/* ===== Телефоны ===== */
+@media (max-width: 600px) {
+  .head-content {
+    padding: 18px 5%;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+
+  .brand-name {
+    font-size: 29px;
+  }
+
+  .links-head-content {
+    display: contents;
+  }
+
+  .cart-logo {
+    margin-left: auto;
+  }
+
+  .links {
+    order: 3;
+    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .header-link {
+    font-size: 12px;
+  }
+
+  .ad {
+    min-height: 300px;
+    padding: 45px 6%;
+  }
+
+  .ad-text h1 {
+    font-size: 43px;
+  }
+
+  .ad-text p {
+    font-size: 14px;
+  }
+
+  .go-shop {
+    padding: 13px 22px;
+  }
+}
+
+@media (max-width: 360px) {
+  .header-link {
+    font-size: 11px;
+  }
+
+  .ad-text h1 {
+    font-size: 36px;
+  }
 }

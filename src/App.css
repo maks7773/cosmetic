@@ -1,1 +1,61 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+/* Общие настройки */
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: "Manrope", Arial, sans-serif;
+  color: #302b27;
+  background: #faf7f2;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #faf7f2;
+}
+
+/* Общие настройки кнопок */
+button {
+  font: inherit;
+}
+
+/* Выделение текста */
+::selection {
+  background: #dfcbbb;
+  color: #302b27;
+}
+
+/* Полоса прокрутки */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #faf7f2;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d6c6b6;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #bba28c;
+}
+
+/* Общая адаптация */
+img {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
