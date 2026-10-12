@@ -1,13 +1,59 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-/* Общие настройки */
-* {
-  box-sizing: border-box;
-}
+/* Шрифты подключаем один раз здесь (у обоих есть кириллица) */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&display=swap');
 
+/* ===== Дизайн-переменные =====
+   Меняешь цвет здесь — он меняется на всём сайте */
 :root {
-  font-family: "Manrope", Arial, sans-serif;
-  color: #302b27;
-  background: #faf7f2;
+  /* Фоны */
+  --color-bg: #f6ede6;            /* основной фон страницы */
+  --color-surface: #ffffff;       /* карточки, окна */
+  --color-surface-muted: #f8e4df; /* подложка под фото товара */
+  --color-blush: #f4d3cd;         /* пудра */
+  --color-blush-strong: #e6a49d;  /* пудра поярче */
+
+  /* Текст */
+  --color-text: #241c1a;
+  --color-text-muted: #5b4d46;
+  --color-on-dark: #ffffff;
+
+  /* Акцент — насыщенная роза */
+  --color-accent: #b0475a;
+  --color-accent-hover: #8f3546;
+
+  /* Линии */
+  --color-border: #e5cfc4;
+  --color-border-strong: #d2b0a2;
+
+  /* Опасные действия (удалить) */
+  --color-danger: #a1443f;
+
+  /* Шрифты */
+  --font-heading: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Manrope", Arial, sans-serif;
+
+  /* Скругления */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 999px;
+
+  /* Тени */
+  --shadow-sm: 0 2px 8px rgba(46, 39, 36, 0.05);
+  --shadow-md: 0 14px 34px rgba(46, 39, 36, 0.09);
+  --shadow-lg: 0 24px 70px rgba(46, 39, 36, 0.22);
+
+  /* Ширина контента и боковые отступы */
+  --container: 1200px;
+  --gutter: clamp(16px, 5vw, 64px);
+
+  /* Анимации */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration: 0.25s;
+
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.5;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,22 +61,43 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ===== Общие настройки ===== */
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: #faf7f2;
+  background: var(--color-bg);
 }
 
-/* Общие настройки кнопок */
 button {
   font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+/* Видимая рамка при переходе по сайту клавиатурой (Tab) */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 /* Выделение текста */
 ::selection {
-  background: #dfcbbb;
-  color: #302b27;
+  background: var(--color-blush-strong);
+  color: var(--color-text);
 }
 
 /* Полоса прокрутки */
@@ -39,23 +106,24 @@ button {
 }
 
 ::-webkit-scrollbar-track {
-  background: #faf7f2;
+  background: var(--color-bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d6c6b6;
+  background: var(--color-border-strong);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #bba28c;
+  background: var(--color-accent);
 }
 
-/* Общая адаптация */
-img {
-  max-width: 100%;
-}
-
-a {
-  color: inherit;
+/* Если человек отключил анимации в системе — убираем их */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }

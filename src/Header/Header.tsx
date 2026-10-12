@@ -1,3 +1,4 @@
+import { ArrowRight, ShoppingBag } from "lucide-react";
 import "./Header.css";
 
 type HeaderProps = {
@@ -12,7 +13,7 @@ function Header(props: HeaderProps) {
       <div className="head-content">
         <h1 className="brand-name">Evangele</h1>
         <div className="links-head-content">
-          <div className="links">
+          <nav className="links">
             <a href="" className="header-link">
               Каталог
             </a>
@@ -25,22 +26,25 @@ function Header(props: HeaderProps) {
             <a href="" className="header-link">
               Контакты
             </a>
-          </div>
-          <div className="cart-logo" onClick={() => props.setIsCartOpen(!props.isCartOpen)}>
-            <img
-              src="/710d9cf71f940ac47a8e8ef289f26d4b.jpg"
-              className="cart-logo"
-              alt=""
-            />
+          </nav>
+          <button
+            className="cart-logo"
+            aria-label="Открыть корзину"
+            onClick={() => props.setIsCartOpen(!props.isCartOpen)}
+          >
+            <ShoppingBag size={22} strokeWidth={1.6} aria-hidden="true" />
             <span className="cart-count">{props.totalCount}</span>
-          </div>
+          </button>
         </div>
       </div>
       <div className="ad">
         <div className="ad-text">
           <h1>Choose a Better You</h1>
           <p>Feel better with evangele, lalallala</p>
-          <button className="go-shop">К Каталогу</button>
+          <button className="go-shop">
+            К Каталогу
+            <ArrowRight size={16} strokeWidth={1.8} aria-hidden="true" />
+          </button>
         </div>
       </div>
     </header>
