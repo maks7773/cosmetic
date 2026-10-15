@@ -1,39 +1,68 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Header from "./Header/Header";
 import "./App.css";
 import Catalog from "./Catalog/Catalog";
 import Cart from "./Cart/Cart";
 import type { CartItem } from "./data/products";
 
-
 function App() {
   const [cart, setCart] = useState<CartItem[]>([]);
-  const [ isCartOpen, setIsCartOpen] = useState<boolean>(false)
+  const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
 
   function onBuy(id: number) {
     const foundItem = cart.find((pr) => pr.id === id);
     if (foundItem) {
       const newCart = cart.map((pr) => {
         if (pr.id === id) {
-          return {...pr, quantity: pr.quantity + 1}
-          
+          return { ...pr, quantity: pr.quantity + 1 };
         }
-        return pr
+        return pr;
       });
       setCart(newCart);
     } else {
-      setCart([...cart, {id: id, quantity: 1}]);
+      setCart([...cart, { id: id, quantity: 1 }]);
     }
   }
 
-  const totalCount = cart.reduce((ac, pr) => ac + pr.quantity,0)
+  function removeOneProduct(id: number) {
+    const foundItem = cart.find((pr) => pr.id === id);
 
-  useEffect(() => console.log(cart),[cart])
+    if (foundItem && foundItem.quantity > 1) {
+      const newCart = cart.map((pr) => {
+        if (pr.id === id) {
+          return { ...pr, quantity: pr.quantity - 1 };
+        }
+        return pr;
+      });
+      setCart(newCart);
+    } else {
+      const newCart = cart.filter((pr) => pr.id !== id);
+      setCart(newCart);
+    }
+  }
+
+  function deleteProduct(id: number) {
+    const newCart = cart.filter((pr) => pr.id !== id);
+    setCart(newCart);
+  }
+
+  const totalCount = cart.reduce((ac, pr) => ac + pr.quantity, 0);
 
   return (
     <>
-      <Header totalCount = {totalCount} isCartOpen = {isCartOpen} setIsCartOpen = {setIsCartOpen} />
-      <Cart isCartOpen = {isCartOpen} cart = {cart}/>
+      <Header
+        totalCount={totalCount}
+        isCartOpen={isCartOpen}
+        setIsCartOpen={setIsCartOpen}
+      />
+      <Cart
+        isCartOpen={isCartOpen}
+        setIsCartOpen={setIsCartOpen}
+        deleteProduct={deleteProduct}
+        removeOneProduct={removeOneProduct}
+        onBuy={onBuy}
+        cart={cart}
+      />
       <Catalog onBuy={onBuy} />
     </>
   );
