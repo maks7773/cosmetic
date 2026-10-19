@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./Header/Header";
 import "./App.css";
 import Catalog from "./Catalog/Catalog";
@@ -6,8 +6,19 @@ import Cart from "./Cart/Cart";
 import type { CartItem } from "./data/products";
 
 function App() {
-  const [cart, setCart] = useState<CartItem[]>([]);
+  const [cart, setCart] = useState<CartItem[]>(() => {
+    const saved = localStorage.getItem("savedCart")
+    if (saved) {
+      return JSON.parse(saved)
+    } else {
+      return []
+    }
+  });
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    localStorage.setItem("savedCart", JSON.stringify(cart))
+  }, [cart])
 
   function onBuy(id: number) {
     const foundItem = cart.find((pr) => pr.id === id);
