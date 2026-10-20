@@ -57,6 +57,10 @@ function App() {
     setCart(newCart);
   }
 
+  function clearCart () {
+    setCart([])
+  }
+
   const totalCount = cart.reduce((ac, pr) => ac + pr.quantity, 0);
 
   return (
@@ -73,6 +77,7 @@ function App() {
         removeOneProduct={removeOneProduct}
         onBuy={onBuy}
         cart={cart}
+        clearCart={clearCart}
       />
       <Catalog onBuy={onBuy} />
     </>
