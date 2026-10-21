@@ -20,6 +20,94 @@
   border-radius: 2px;
 }
 
+/* ===== Поиск и сортировка ===== */
+.catalog-toolbar {
+  display: flex;
+  gap: 12px;
+
+  max-width: var(--container);
+  margin: 0 auto 28px;
+  padding: 0 var(--gutter);
+}
+
+/* Поле поиска с иконкой лупы внутри */
+.catalog-search {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.catalog-search svg {
+  position: absolute;
+  left: 16px;
+  color: var(--color-text-muted);
+  pointer-events: none; /* клик по лупе попадает в поле */
+}
+
+.catalog-search input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 18px 0 46px; /* слева место под лупу */
+
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-full);
+
+  font: inherit;
+  font-size: 16px;
+
+  transition:
+    border-color var(--duration) var(--ease),
+    box-shadow var(--duration) var(--ease);
+}
+
+.catalog-search input::placeholder {
+  color: #a8968c;
+}
+
+/* Выпадающий список сортировки */
+.catalog-sort {
+  min-height: 48px;
+  padding: 0 44px 0 18px;
+
+  background-color: var(--color-surface);
+  /* своя стрелочка вместо стандартной */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%235b4d46' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  appearance: none;
+
+  color: var(--color-text);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-full);
+
+  font: inherit;
+  font-size: 15px;
+  cursor: pointer;
+
+  transition:
+    border-color var(--duration) var(--ease),
+    box-shadow var(--duration) var(--ease);
+}
+
+.catalog-search input:focus,
+.catalog-sort:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(176, 71, 90, 0.15);
+}
+
+/* «Ничего не нашлось» */
+.catalog-empty {
+  margin: 8px auto 96px;
+  padding: 0 var(--gutter);
+  color: var(--color-text-muted);
+  font-size: 15px;
+  text-align: center;
+}
+
 /* Сетка товаров */
 .catalog {
   display: grid;
@@ -54,6 +142,13 @@
   .catalog {
     gap: 12px;
     margin-bottom: 56px;
+  }
+
+  /* на телефоне поиск и сортировка друг под другом */
+  .catalog-toolbar {
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
   }
 }
 
