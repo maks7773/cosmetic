@@ -9,12 +9,12 @@ type CatalogProps = {
 }
 
 function Catalog(props: CatalogProps) {
-  // TODO: состояния для текста поиска и выбранной сортировки
+  
   const [ search, setSearch ] = useState<string>("");
   const [ sorting, setSorting ] = useState<string>("default")
-  // TODO: отфильтровать и отсортировать товары
-  let visibleProducts = products.filter((pr) => {
-    return pr.name.toLowerCase().includes(search.toLowerCase())
+  
+  const visibleProducts = products.filter((pr) => {
+    return pr.name.toLowerCase().includes(search.toLowerCase().trim())
     
   });
 
