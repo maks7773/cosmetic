@@ -14,16 +14,16 @@ function Header(props: HeaderProps) {
         <h1 className="brand-name">Evangele</h1>
         <div className="links-head-content">
           <nav className="links">
-            <a href="" className="header-link">
+            <a href="#catalog" className="header-link">
               Каталог
             </a>
-            <a href="" className="header-link">
+            <a href="#about" className="header-link">
               О Нас
             </a>
-            <a href="" className="header-link">
+            <a href="#faq" className="header-link">
               FAQ
             </a>
-            <a href="" className="header-link">
+            <a href="#contacts" className="header-link">
               Контакты
             </a>
           </nav>
@@ -41,10 +41,10 @@ function Header(props: HeaderProps) {
         <div className="ad-text">
           <h1>Choose a Better You</h1>
           <p>Feel better with evangele, lalallala</p>
-          <button className="go-shop">
+          <a href="#catalog" className="go-shop">
             К Каталогу
             <ArrowRight size={16} strokeWidth={1.8} aria-hidden="true" />
-          </button>
+          </a>
         </div>
       </div>
     </header>

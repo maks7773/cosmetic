@@ -3,6 +3,10 @@ import Header from "./Header/Header";
 import "./App.css";
 import Catalog from "./Catalog/Catalog";
 import Cart from "./Cart/Cart";
+import About from "./About/About";
+import Faq from "./Faq/Faq";
+import Contacts from "./Contacts/Contacts";
+import Footer from "./Footer/Footer";
 import type { CartItem } from "./data/products";
 
 function App() {
@@ -80,6 +84,10 @@ function App() {
         clearCart={clearCart}
       />
       <Catalog onBuy={onBuy} />
+      <About />
+      <Faq />
+      <Contacts />
+      <Footer />
     </>
   );
 }

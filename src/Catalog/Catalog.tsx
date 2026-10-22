@@ -25,7 +25,7 @@ function Catalog(props: CatalogProps) {
   }
 
   return (
-    <>
+    <section id="catalog">
       <h1 className="title">Каталог</h1>
 
       <div className="catalog-toolbar">
@@ -58,7 +58,7 @@ function Catalog(props: CatalogProps) {
           );
         })}
       </div>
-    </>
+    </section>
   );
 }
 

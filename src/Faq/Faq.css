@@ -1,0 +1,80 @@
+/* ===== Частые вопросы ===== */
+.faq-list {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.faq-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--duration) var(--ease);
+}
+
+/* Открытый вопрос — с розовой рамкой */
+.faq-item.open {
+  border-color: var(--color-blush-strong);
+}
+
+.faq-question {
+  width: 100%;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+
+  background: none;
+  border: none;
+  text-align: left;
+
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.faq-question svg {
+  flex-shrink: 0;
+  color: var(--color-accent);
+  transition: transform var(--duration) var(--ease);
+}
+
+/* Стрелка переворачивается, когда вопрос открыт */
+.faq-item.open .faq-question svg {
+  transform: rotate(180deg);
+}
+
+.faq-question:hover span {
+  color: var(--color-accent);
+}
+
+.faq-answer {
+  margin: 0;
+  padding: 0 20px 20px;
+  color: var(--color-text-muted);
+  font-size: 15px;
+  line-height: 1.7;
+  animation: faq-open 0.25s var(--ease);
+}
+
+@keyframes faq-open {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+@media (max-width: 560px) {
+  .faq-question {
+    padding: 14px 16px;
+    font-size: 15px;
+  }
+
+  .faq-answer {
+    padding: 0 16px 16px;
+    font-size: 14px;
+  }
+}
