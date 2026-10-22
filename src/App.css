@@ -66,6 +66,53 @@
   box-sizing: border-box;
 }
 
+/* Плавная прокрутка по ссылкам вида href="#faq" */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Разделы страницы: О нас, FAQ, Контакты */
+.section {
+  max-width: calc(var(--container) + var(--gutter) * 2);
+  margin: 0 auto;
+  padding: 72px var(--gutter);
+}
+
+.section-title {
+  margin: 0 0 36px;
+  font-family: var(--font-heading);
+  font-size: 44px;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Розовая черта под заголовком, как у «Каталог» */
+.section-title::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 3px;
+  margin: 14px auto 0;
+  background: var(--color-accent);
+  border-radius: 2px;
+}
+
+/* Отступ сверху при прокрутке к разделу, чтобы заголовок не прилипал к краю */
+section[id] {
+  scroll-margin-top: 16px;
+}
+
+@media (max-width: 560px) {
+  .section {
+    padding: 48px var(--gutter);
+  }
+
+  .section-title {
+    font-size: 32px;
+    margin-bottom: 24px;
+  }
+}
+
 body {
   margin: 0;
   min-width: 320px;
@@ -120,6 +167,10 @@ a {
 
 /* Если человек отключил анимации в системе — убираем их */
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   *,
   *::before,
   *::after {
