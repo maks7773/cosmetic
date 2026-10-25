@@ -1,17 +1,23 @@
-import { Search } from "lucide-react";
-import products from "../data/products";
+import { CircleAlert, Loader2, Search } from "lucide-react";
+import  { type Product } from "../data/products";
 import ProductCard from "../ProductCard/ProductCard";
 import "./Catalog.css"
 import { useState } from "react";
 
 type CatalogProps = {
   onBuy: (id:number) => void
+  products: Product[]
+  isLoading: boolean
+  isError: boolean
 }
 
 function Catalog(props: CatalogProps) {
-  
+  const products = props.products
+  const isLoading = props.isLoading
+  const isError = props.isError
   const [ search, setSearch ] = useState<string>("");
   const [ sorting, setSorting ] = useState<string>("default")
+
   
   const visibleProducts = products.filter((pr) => {
     return pr.name.toLowerCase().includes(search.toLowerCase().trim())
@@ -22,6 +28,32 @@ function Catalog(props: CatalogProps) {
     visibleProducts.sort((a,b) => a.price - b.price)
   } else if (sorting === "expensive") {
     visibleProducts.sort((a,b) => b.price - a.price)
+  }
+
+  
+
+  if (isLoading) {
+    return (
+      <section id="catalog">
+        <h1 className="title">Каталог</h1>
+        <div className="catalog-status">
+          <Loader2 size={32} strokeWidth={1.6} className="catalog-spinner" aria-hidden="true" />
+          <p>Загружаем товары…</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (isError) {
+    return (
+      <section id="catalog">
+        <h1 className="title">Каталог</h1>
+        <div className="catalog-status catalog-status-error">
+          <CircleAlert size={32} strokeWidth={1.6} aria-hidden="true" />
+          <p>Не удалось загрузить товары. Попробуйте обновить страницу.</p>
+        </div>
+      </section>
+    );
   }
 
   return (

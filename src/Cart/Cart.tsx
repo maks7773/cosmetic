@@ -1,6 +1,6 @@
 import { Minus, Plus, ShoppingBag, Trash2, X, CircleCheck } from "lucide-react";
-import type { CartItem } from "../data/products";
-import products from "../data/products";
+import type { CartItem, Product } from "../data/products";
+
 import Checkout from "../Checkout/Checkout";
 import "./Cart.css";
 import { useState } from "react";
@@ -13,12 +13,13 @@ type CartProps = {
   onBuy: (id: number) => void;
   cart: CartItem[];
   clearCart: () => void;
+  products: Product[]
 };
 
 function Cart(props: CartProps) {
   const cartProducts = props.cart
     .map((cart_pr) => {
-      const foundPr = products.find((pr) => pr.id === cart_pr.id);
+      const foundPr = props.products.find((pr) => pr.id === cart_pr.id);
       if (foundPr) {
         return { ...foundPr, quantity: cart_pr.quantity };
       }

@@ -99,6 +99,40 @@
   box-shadow: 0 0 0 3px rgba(176, 71, 90, 0.15);
 }
 
+/* ===== Загрузка и ошибка ===== */
+.catalog-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin: 24px auto 96px;
+  padding: 0 var(--gutter);
+
+  color: var(--color-accent);
+  text-align: center;
+}
+
+.catalog-status p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 15px;
+}
+
+.catalog-status-error {
+  color: var(--color-danger);
+}
+
+/* Крутящийся значок загрузки */
+.catalog-spinner {
+  animation: catalog-spin 0.9s linear infinite;
+}
+
+@keyframes catalog-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* «Ничего не нашлось» */
 .catalog-empty {
   margin: 8px auto 96px;
