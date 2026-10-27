@@ -12,12 +12,7 @@ export type CartItem = {
 
 export type propsProductCard = Pick<Product, "id" | "name" | "price" | "img"> & {
   onBuy: (id: number) => void
+  onFav: (id: number) => void
+  isFav: boolean
 }
 
-const products: Product[] = [
-    { id: 1, name: "SKIN1004 Cleansing Oil", price: 1890, img: "/1.jpg" },
-    { id: 2, name: "AXIS-Y Dark Spot Correcting Glow Serum", price: 1490, img: "/2.jpg" },
-    { id: 3, name: "Round Lab Dokdo Water Gel Mask", price: 350, img: "/3.jpg" },
-  ];
-
-export default products

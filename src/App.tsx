@@ -8,6 +8,7 @@ import Faq from "./Faq/Faq";
 import Contacts from "./Contacts/Contacts";
 import Footer from "./Footer/Footer";
 import { type Product, type CartItem } from "./data/products";
+import Fav from "./Fav/Fav";
 
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -22,6 +23,15 @@ function App() {
     }
   });
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
+  const [isFavOpen, setIsFavOpen] = useState<boolean>(false);
+  const [favCart, setFavCart] = useState<number[]>(() => {
+    const saved = localStorage.getItem("favCart");
+    if (saved) {
+      return JSON.parse(saved);
+    } else {
+      return [];
+    }
+  });
 
   useEffect(() => {
     async function loadProducts() {
@@ -40,7 +50,8 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem("savedCart", JSON.stringify(cart));
-  }, [cart]);
+    localStorage.setItem("favCart", JSON.stringify(favCart));
+  }, [cart, favCart]);
 
   function onBuy(id: number) {
     const foundItem = cart.find((pr) => pr.id === id);
@@ -83,7 +94,16 @@ function App() {
     setCart([]);
   }
 
+function onFav(id: number) {
+  if (favCart.includes(id)) {
+    setFavCart(favCart.filter((favId) => favId !== id));
+  } else {
+    setFavCart([...favCart, id]);
+  }
+}
+
   const totalCount = cart.reduce((ac, pr) => ac + pr.quantity, 0);
+  const totalFavCount = favCart.length;
 
   return (
     <>
@@ -91,7 +111,11 @@ function App() {
         totalCount={totalCount}
         isCartOpen={isCartOpen}
         setIsCartOpen={setIsCartOpen}
+        totalFavCount={totalFavCount}
+        isFavOpen={isFavOpen}
+        setIsFavOpen={setIsFavOpen}
       />
+      <Fav favProducts={products.filter((pr) => favCart.includes(pr.id))} isFavOpen={isFavOpen} setIsFavOpen={setIsFavOpen} onFav={onFav} onBuy={onBuy}/>
       <Cart
         isCartOpen={isCartOpen}
         setIsCartOpen={setIsCartOpen}
@@ -107,6 +131,8 @@ function App() {
         products={products}
         isLoading={isLoading}
         isError={isError}
+        onFav={onFav}
+        favCart={favCart}
       />
       <About />
       <Faq />
