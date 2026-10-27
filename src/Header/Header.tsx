@@ -1,10 +1,13 @@
-import { ArrowRight, ShoppingBag } from "lucide-react";
+import { ArrowRight, Heart, ShoppingBag } from "lucide-react";
 import "./Header.css";
 
 type HeaderProps = {
   totalCount: number;
   isCartOpen: boolean;
   setIsCartOpen: (value: boolean) => void;
+  totalFavCount: number;
+  isFavOpen: boolean;
+  setIsFavOpen: (value: boolean) => void
 }
 
 function Header(props: HeaderProps) {
@@ -27,6 +30,15 @@ function Header(props: HeaderProps) {
               Контакты
             </a>
           </nav>
+          <div className="header-actions">
+          <button
+            className="fav-logo"
+            aria-label="Открыть избранное"
+            onClick={() => props.setIsFavOpen(!props.isFavOpen)}
+          >
+            <Heart size={22} strokeWidth={1.6} aria-hidden="true" />
+            <span className="cart-count">{props.totalFavCount}</span>
+          </button>
           <button
             className="cart-logo"
             aria-label="Открыть корзину"
@@ -35,6 +47,7 @@ function Header(props: HeaderProps) {
             <ShoppingBag size={22} strokeWidth={1.6} aria-hidden="true" />
             <span className="cart-count">{props.totalCount}</span>
           </button>
+          </div>
         </div>
       </div>
       <div className="ad">

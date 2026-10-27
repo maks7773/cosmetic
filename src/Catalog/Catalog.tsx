@@ -9,6 +9,8 @@ type CatalogProps = {
   products: Product[]
   isLoading: boolean
   isError: boolean
+  onFav: (id:number) => void
+  favCart: number[]
 }
 
 function Catalog(props: CatalogProps) {
@@ -86,6 +88,9 @@ function Catalog(props: CatalogProps) {
               price={pr.price}
               img={pr.img}
               onBuy={props.onBuy}
+              onFav={props.onFav}
+              // TODO: true, если этот товар в избранном
+              isFav={props.favCart.includes(pr.id) ? true : false}
             />
           );
         })}

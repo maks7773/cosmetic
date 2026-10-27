@@ -70,7 +70,15 @@ header {
   transform: scaleX(1);
 }
 
-/* Кнопка корзины */
+/* Кнопки избранного и корзины рядом */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Кнопки избранного и корзины (выглядят одинаково) */
+.fav-logo,
 .cart-logo {
   position: relative;
   width: 46px;
@@ -91,6 +99,7 @@ header {
     color var(--duration) var(--ease);
 }
 
+.fav-logo:hover,
 .cart-logo:hover {
   background: var(--color-blush);
   border-color: var(--color-blush-strong);
@@ -242,7 +251,7 @@ header {
     display: contents;
   }
 
-  .cart-logo {
+  .header-actions {
     margin-left: auto;
   }
 
