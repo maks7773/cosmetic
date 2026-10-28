@@ -133,6 +133,7 @@ function onFav(id: number) {
         isError={isError}
         onFav={onFav}
         favCart={favCart}
+        
       />
       <About />
       <Faq />

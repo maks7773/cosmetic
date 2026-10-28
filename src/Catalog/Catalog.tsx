@@ -1,4 +1,4 @@
-import { CircleAlert, Loader2, Search } from "lucide-react";
+import { CircleAlert, Heart, Loader2, Search } from "lucide-react";
 import  { type Product } from "../data/products";
 import ProductCard from "../ProductCard/ProductCard";
 import "./Catalog.css"
@@ -11,6 +11,7 @@ type CatalogProps = {
   isError: boolean
   onFav: (id:number) => void
   favCart: number[]
+  
 }
 
 function Catalog(props: CatalogProps) {
@@ -19,18 +20,25 @@ function Catalog(props: CatalogProps) {
   const isError = props.isError
   const [ search, setSearch ] = useState<string>("");
   const [ sorting, setSorting ] = useState<string>("default")
+  const [ isFavOn, setIsFavOn ] = useState<boolean>(false)
 
   
-  const visibleProducts = products.filter((pr) => {
+  let visibleProducts = products.filter((pr) => {
     return pr.name.toLowerCase().includes(search.toLowerCase().trim())
     
   });
+
+  if (isFavOn) {
+    visibleProducts = visibleProducts.filter((pr) => props.favCart.includes(pr.id))
+  }
+
+  
 
   if (sorting === "cheap") {
     visibleProducts.sort((a,b) => a.price - b.price)
   } else if (sorting === "expensive") {
     visibleProducts.sort((a,b) => b.price - a.price)
-  }
+  } 
 
   
 
@@ -67,6 +75,21 @@ function Catalog(props: CatalogProps) {
           <Search size={18} strokeWidth={1.8} aria-hidden="true" />
           <input type="search" placeholder="Найти товар…" aria-label="Поиск по каталогу" value={search} onChange={(e) => setSearch(e.target.value)} />
         </label>
+
+        
+        <button
+          className={isFavOn ? "catalog-fav-toggle active" : "catalog-fav-toggle"}
+          aria-pressed={isFavOn}
+          onClick={() => setIsFavOn(!isFavOn)}
+        >
+          <Heart
+            size={18}
+            strokeWidth={1.8}
+            fill={isFavOn ? "currentColor" : "none"}
+            aria-hidden="true"
+          />
+          Только избранное
+        </button>
 
         <select className="catalog-sort" aria-label="Сортировка" value={sorting} onChange={(e) => setSorting(e.target.value)}>
           <option value="default">По умолчанию</option>

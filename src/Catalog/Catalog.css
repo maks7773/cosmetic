@@ -92,6 +92,49 @@
     box-shadow var(--duration) var(--ease);
 }
 
+/* Кнопка «Только избранное» */
+.catalog-fav-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 20px;
+
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-full);
+
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+
+  transition:
+    background var(--duration) var(--ease),
+    border-color var(--duration) var(--ease),
+    color var(--duration) var(--ease);
+}
+
+.catalog-fav-toggle svg {
+  color: var(--color-accent);
+}
+
+.catalog-fav-toggle:hover {
+  border-color: var(--color-accent);
+}
+
+/* Включена: розовая заливка, белый текст и сердце */
+.catalog-fav-toggle.active {
+  background: var(--color-accent);
+  color: var(--color-on-dark);
+  border-color: var(--color-accent);
+}
+
+.catalog-fav-toggle.active svg {
+  color: var(--color-on-dark);
+}
+
 .catalog-search input:focus,
 .catalog-sort:focus {
   outline: none;
