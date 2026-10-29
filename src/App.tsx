@@ -37,6 +37,9 @@ function App() {
     async function loadProducts() {
       try {
         const response = await fetch("/products.json");
+        if (!response.ok) {
+          throw new Error("Не удалось загрузить товары")
+        }
         const data = await response.json();
         setProducts(data);
       } catch {
@@ -133,7 +136,7 @@ function onFav(id: number) {
         isError={isError}
         onFav={onFav}
         favCart={favCart}
-        
+        totalFavCount={totalFavCount}
       />
       <About />
       <Faq />

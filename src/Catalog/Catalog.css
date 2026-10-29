@@ -135,6 +135,30 @@
   color: var(--color-on-dark);
 }
 
+/* Счётчик внутри кнопки: маленькая «таблетка» справа от текста */
+.fav-toggle-count {
+  min-width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 7px;
+
+  background: var(--color-blush);
+  color: var(--color-accent);
+  border-radius: var(--radius-full);
+
+  font-size: 12px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Кнопка включена — счётчик становится белым */
+.catalog-fav-toggle.active .fav-toggle-count {
+  background: var(--color-on-dark);
+  color: var(--color-accent);
+}
+
 .catalog-search input:focus,
 .catalog-sort:focus {
   outline: none;
