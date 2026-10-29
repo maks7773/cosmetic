@@ -11,7 +11,7 @@ type CatalogProps = {
   isError: boolean
   onFav: (id:number) => void
   favCart: number[]
-  
+  totalFavCount: number
 }
 
 function Catalog(props: CatalogProps) {
@@ -89,6 +89,7 @@ function Catalog(props: CatalogProps) {
             aria-hidden="true"
           />
           Только избранное
+          <span className="fav-toggle-count">{props.totalFavCount}</span>
         </button>
 
         <select className="catalog-sort" aria-label="Сортировка" value={sorting} onChange={(e) => setSorting(e.target.value)}>
@@ -97,8 +98,8 @@ function Catalog(props: CatalogProps) {
           <option value="expensive">Сначала дороже</option>
         </select>
       </div>
-
-      {visibleProducts.length === 0 && <p className="catalog-empty">Ничего не нашлось. Попробуйте другой запрос</p> }
+      {visibleProducts.length === 0 && isFavOn && <p className="catalog-empty">В избранном пока пусто</p> }
+      {visibleProducts.length === 0 &&  !isFavOn && <p className="catalog-empty">Ничего не нашлось. Попробуйте другой запрос</p> }
       
 
       <div className="catalog">
