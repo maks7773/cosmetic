@@ -98,7 +98,7 @@ function Catalog(props: CatalogProps) {
           <option value="expensive">Сначала дороже</option>
         </select>
       </div>
-      {visibleProducts.length === 0 && isFavOn && <p className="catalog-empty">В избранном пока пусто</p> }
+      {visibleProducts.length === 0 && props.favCart.length == 0 && <p className="catalog-empty">В избранном пока пусто</p> }
       {visibleProducts.length === 0 &&  !isFavOn && <p className="catalog-empty">Ничего не нашлось. Попробуйте другой запрос</p> }
       
 
