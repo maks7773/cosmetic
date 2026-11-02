@@ -1,14 +1,15 @@
-/* ===== Подвал ===== */
+/* ===== Подвал: винный ===== */
 .footer {
   margin-top: 40px;
   background: var(--color-text);
   color: var(--color-on-dark);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
 
 .footer-inner {
   max-width: calc(var(--container) + var(--gutter) * 2);
   margin: 0 auto;
-  padding: 32px var(--gutter);
+  padding: 40px var(--gutter);
 
   display: flex;
   align-items: center;
@@ -19,19 +20,18 @@
 
 .footer-brand {
   font-family: var(--font-heading);
-  font-size: 26px;
-  font-weight: 600;
-  letter-spacing: 1px;
+  font-size: 30px;
+  font-weight: 700;
 }
 
 .footer-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 26px;
 }
 
 .footer-links a {
-  color: #d9cbc4;
+  color: #f0c9d3;
   font-size: 14px;
   text-decoration: none;
   transition: color var(--duration) var(--ease);
@@ -42,7 +42,7 @@
 }
 
 .footer-copy {
-  color: #a8968c;
+  color: #c99aa8;
   font-size: 13px;
 }
 

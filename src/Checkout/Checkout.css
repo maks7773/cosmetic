@@ -125,11 +125,11 @@
   width: 100%;
   min-height: 50px;
 
-  background: var(--color-accent);
+  background: var(--gloss-accent);
   color: var(--color-on-dark);
   border: none;
   border-radius: var(--radius-full);
-  box-shadow: 0 8px 20px rgba(176, 71, 90, 0.25);
+  box-shadow: var(--gloss-shadow);
 
   font-size: 15px;
   font-weight: 600;
@@ -140,7 +140,7 @@
 }
 
 .checkout-submit:hover {
-  background: var(--color-accent-hover);
+  background: var(--gloss-accent-hover);
 }
 
 .checkout-submit:active {
@@ -179,7 +179,7 @@
   min-height: 50px;
   margin-top: 4px;
 
-  background: var(--color-accent);
+  background: var(--gloss-accent);
   color: var(--color-on-dark);
   border: none;
   border-radius: var(--radius-full);
@@ -191,7 +191,7 @@
 }
 
 .cart-checkout-btn:hover {
-  background: var(--color-accent-hover);
+  background: var(--gloss-accent-hover);
 }
 
 /* ===== Телефоны ===== */
@@ -207,4 +207,9 @@
   .checkout-success-title {
     font-size: 26px;
   }
+}
+
+/* Глянцевая тень у кнопки «Оформить заказ» */
+.cart-checkout-btn {
+  box-shadow: var(--gloss-shadow);
 }

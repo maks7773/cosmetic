@@ -1,44 +1,54 @@
 /* ===== Частые вопросы ===== */
 .faq-list {
-  max-width: 760px;
+  max-width: 780px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
+/* Стеклянная плашка вопроса */
 .faq-item {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: var(--glass-sheen), var(--glass-bg);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-md);
-  transition: border-color var(--duration) var(--ease);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  transition: background var(--duration) var(--ease);
 }
 
-/* Открытый вопрос — с розовой рамкой */
+/* Открытый вопрос — плашка плотнее */
 .faq-item.open {
-  border-color: var(--color-blush-strong);
+  background: var(--glass-bg-strong);
 }
 
 .faq-question {
   width: 100%;
-  min-height: 60px;
+  min-height: 64px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 16px 20px;
+  padding: 18px 24px;
 
   background: none;
   border: none;
   text-align: left;
 
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 600;
 }
 
+/* Стрелка в тонком кружке */
 .faq-question svg {
   flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  padding: 7px;
   color: var(--color-accent);
+  border: 1px solid var(--color-blush-strong);
+  border-radius: var(--radius-full);
   transition: transform var(--duration) var(--ease);
 }
 
@@ -52,8 +62,9 @@
 }
 
 .faq-answer {
+  max-width: 65ch;
   margin: 0;
-  padding: 0 20px 20px;
+  padding: 0 24px 22px;
   color: var(--color-text-muted);
   font-size: 15px;
   line-height: 1.7;

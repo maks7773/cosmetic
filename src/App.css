@@ -1,50 +1,80 @@
-/* Шрифты подключаем один раз здесь (у обоих есть кириллица) */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&display=swap');
+/* Шрифты: Playfair Display — заголовки (контрастная антиква, как в постах магазина),
+   Manrope — основной текст. У обоих есть кириллица */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
 
 /* ===== Дизайн-переменные =====
    Меняешь цвет здесь — он меняется на всём сайте */
 :root {
   /* Фоны */
-  --color-bg: #f6ede6;            /* основной фон страницы */
-  --color-surface: #ffffff;       /* карточки, окна */
-  --color-surface-muted: #f8e4df; /* подложка под фото товара */
-  --color-blush: #f4d3cd;         /* пудра */
-  --color-blush-strong: #e6a49d;  /* пудра поярче */
+  --color-bg: #f7f3f6;            /* жемчужный фон страницы */
+  --color-surface: #ffffff;       /* сплошной белый (поля ввода, кнопки) */
+  --color-surface-muted: #efe8f0; /* перламутровая подложка под фото товара */
+  --color-blush: #f4d6dd;         /* пудра */
+  --color-blush-strong: #e3a9b8;  /* пудра поярче */
+
+  /* Стекло: полупрозрачные плашки, как в постах магазина */
+  --glass-bg: rgba(255, 255, 255, 0.42);
+  --glass-bg-strong: rgba(255, 250, 251, 0.88);
+  --glass-border: rgba(255, 255, 255, 0.95);
+  /* размытие + насыщенность: цвет за стеклом становится сочнее */
+  --glass-blur: blur(20px) saturate(170%);
+
+  /* Блик на стекле: светлое пятно в левом верхнем углу + диагональный перелив.
+     Использовать так: background: var(--glass-sheen), var(--glass-bg); */
+  --glass-sheen:
+    radial-gradient(120% 70% at 0% 0%, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 55%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 45%, rgba(255, 255, 255, 0.25) 100%);
+
+  /* Кнопки: плоская ровная заливка, как у современных корейских брендов */
+  --gloss-accent: #9e3d5c;
+  --gloss-accent-hover: #86304d;
+  /* мягкая тень под кнопкой, без бликов */
+  --gloss-shadow: 0 6px 18px rgba(158, 61, 92, 0.2);
 
   /* Текст */
-  --color-text: #241c1a;
-  --color-text-muted: #5b4d46;
+  --color-text: #4a1a2c;          /* винный */
+  --color-text-muted: #7e5a65;
   --color-on-dark: #ffffff;
 
-  /* Акцент — насыщенная роза */
-  --color-accent: #b0475a;
-  --color-accent-hover: #8f3546;
+  /* Акцент — роза-вино */
+  --color-accent: #9e3d5c;
+  --color-accent-hover: #7e2a46;
 
   /* Линии */
-  --color-border: #e5cfc4;
-  --color-border-strong: #d2b0a2;
+  --color-border: #efd3da;
+  --color-border-strong: #e0b4c0;
 
   /* Опасные действия (удалить) */
-  --color-danger: #a1443f;
+  --color-danger: #a63a3a;
 
   /* Шрифты */
-  --font-heading: "Cormorant Garamond", Georgia, serif;
+  --font-heading: "Playfair Display", Georgia, serif;
   --font-body: "Manrope", Arial, sans-serif;
 
-  /* Скругления */
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
+  /* Скругления: чем крупнее блок, тем мягче угол */
+  --radius-sm: 12px;
+  --radius-md: 22px;
+  --radius-lg: 30px;
   --radius-full: 999px;
 
-  /* Тени */
-  --shadow-sm: 0 2px 8px rgba(46, 39, 36, 0.05);
-  --shadow-md: 0 14px 34px rgba(46, 39, 36, 0.09);
-  --shadow-lg: 0 24px 70px rgba(46, 39, 36, 0.22);
+  /* Тени — с розовым оттенком, а не серые */
+  /* У стеклянных плашек сверху тонкая белая «кромка» (inset), как у глянца */
+  --shadow-sm:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(158, 61, 92, 0.05),
+    0 6px 18px rgba(158, 61, 92, 0.08);
+  --shadow-md:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(158, 61, 92, 0.06),
+    0 20px 46px rgba(158, 61, 92, 0.16);
+  --shadow-lg: 0 30px 80px rgba(74, 26, 44, 0.25);
 
   /* Ширина контента и боковые отступы */
   --container: 1200px;
   --gutter: clamp(16px, 5vw, 64px);
+
+  /* Высота липкой шапки — чтобы якоря не прятали заголовок под ней */
+  --header-h: 84px;
 
   /* Анимации */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -53,7 +83,7 @@
   font-family: var(--font-body);
   color: var(--color-text);
   background: var(--color-bg);
-  line-height: 1.5;
+  line-height: 1.55;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -71,53 +101,55 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Разделы страницы: О нас, FAQ, Контакты */
-.section {
-  max-width: calc(var(--container) + var(--gutter) * 2);
-  margin: 0 auto;
-  padding: 72px var(--gutter);
-}
-
-.section-title {
-  margin: 0 0 36px;
-  font-family: var(--font-heading);
-  font-size: 44px;
-  font-weight: 500;
-  text-align: center;
-}
-
-/* Розовая черта под заголовком, как у «Каталог» */
-.section-title::after {
-  content: "";
-  display: block;
-  width: 48px;
-  height: 3px;
-  margin: 14px auto 0;
-  background: var(--color-accent);
-  border-radius: 2px;
-}
-
-/* Отступ сверху при прокрутке к разделу, чтобы заголовок не прилипал к краю */
-section[id] {
-  scroll-margin-top: 16px;
-}
-
-@media (max-width: 560px) {
-  .section {
-    padding: 48px var(--gutter);
-  }
-
-  .section-title {
-    font-size: 32px;
-    margin-bottom: 24px;
-  }
-}
-
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: var(--color-bg);
+  /* Перламутр: сирень, персик, мятная голубизна и немного розового —
+     переливается, как жемчуг, и стекло на нём играет цветом */
+  background:
+    radial-gradient(680px 520px at 92% 6%, #dcd2f7 0%, transparent 62%),
+    radial-gradient(620px 520px at 4% 30%, #fde0d2 0%, transparent 62%),
+    radial-gradient(640px 520px at 62% 52%, #d5ecef 0%, transparent 62%),
+    radial-gradient(600px 520px at 12% 82%, #f6d3df 0%, transparent 62%),
+    radial-gradient(560px 460px at 94% 96%, #e2d8f6 0%, transparent 62%),
+    var(--color-bg);
+  background-attachment: fixed;
+}
+
+/* Разделы страницы: О нас, FAQ, Контакты */
+.section {
+  max-width: calc(var(--container) + var(--gutter) * 2);
+  margin: 0 auto;
+  padding: 80px var(--gutter);
+}
+
+.section-title {
+  margin: 0 0 40px;
+  font-family: var(--font-heading);
+  font-size: clamp(34px, 4vw, 48px);
+  font-weight: 600;
+  line-height: 1.1;
+  text-align: center;
+}
+
+/* Отступ сверху при прокрутке к разделу — под липкой шапкой */
+section[id] {
+  scroll-margin-top: calc(var(--header-h) + 12px);
+}
+
+@media (max-width: 600px) {
+  :root {
+    --header-h: 0px; /* на телефоне шапка не липкая */
+  }
+
+  .section {
+    padding: 56px var(--gutter);
+  }
+
+  .section-title {
+    margin-bottom: 28px;
+  }
 }
 
 button {
@@ -138,7 +170,7 @@ a {
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 /* Выделение текста */
@@ -177,4 +209,115 @@ a {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
   }
+}
+
+/* =====================================================================
+   ЛЁГКИЙ ГЛЯНЕЦ НА СТЕКЛЯННЫХ ПЛАШКАХ (кнопки — плоские, без бликов)
+   1) ::before — мягкий свет на верхней половине плашки;
+   2) ::after  — тонкая светлая кромка: ярче в углах, почти невидимая по бокам.
+   ===================================================================== */
+
+.hero-panel,
+.hero-pill,
+.card,
+.cost,
+.about-feature,
+.faq-item,
+.contacts-card,
+.fav-logo,
+.cart-logo,
+.catalog-fav-toggle {
+  position: relative;
+  isolation: isolate; /* чтобы свет лёг под текст, но над фоном */
+}
+
+/* --- 1. Мягкий свет сверху --- */
+.hero-panel::before,
+.hero-pill::before,
+.card::before,
+.cost::before,
+.about-feature::before,
+.faq-item::before,
+.contacts-card::before,
+.fav-logo::before,
+.cart-logo::before,
+.catalog-fav-toggle::before {
+  content: "";
+  position: absolute;
+  inset: 1px 1px 45% 1px;
+  z-index: -1;
+  border-radius: inherit;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.12) 70%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+}
+
+/* Включённая кнопка «Только избранное» — сплошная, без света сверху */
+.catalog-fav-toggle.active::before {
+  content: none;
+}
+
+/* --- 2. Тонкая светлая кромка (рамка-градиент через маску) --- */
+.hero-panel::after,
+.hero-pill::after,
+.card::after,
+.cost::after,
+.about-feature::after,
+.faq-item::after,
+.contacts-card::after,
+.fav-logo::after,
+.cart-logo::after,
+.catalog-fav-toggle::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px; /* толщина кромки */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.2) 35%,
+    rgba(255, 255, 255, 0.1) 60%,
+    rgba(255, 255, 255, 0.8) 100%
+  );
+  /* маска оставляет только рамку, середину вырезает */
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+
+/* Включённая кнопка «Только избранное» — без кромки */
+.catalog-fav-toggle.active::after {
+  content: none;
+}
+
+/* --- 3. Отблеск, который пробегает по карточке при наведении --- */
+.product-img-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.4) 48%,
+    transparent 61%
+  );
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+
+.card:hover .product-img-wrap::after {
+  transform: translateX(120%);
+  transition: transform 0.9s var(--ease);
 }

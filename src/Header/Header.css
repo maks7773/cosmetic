@@ -1,15 +1,23 @@
-/* ===== Шапка ===== */
-header {
-  width: 100%;
-  background: var(--color-bg);
-  color: var(--color-text);
+/* ===== Шапка: липкая, полупрозрачная ===== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  /* жемчужное стекло с бликом сверху */
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.25) 100%),
+    rgba(247, 243, 246, 0.55);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 30px rgba(74, 26, 44, 0.06);
 }
 
 .head-content {
   max-width: calc(var(--container) + var(--gutter) * 2);
-  min-height: 84px;
+  min-height: var(--header-h);
   margin: 0 auto;
-  padding: 16px var(--gutter);
+  padding: 12px var(--gutter);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -17,25 +25,25 @@ header {
 }
 
 .brand-name {
-  margin: 0;
   font-family: var(--font-heading);
-  font-size: 34px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
+  font-size: 30px;
+  font-weight: 700;
   line-height: 1;
+  color: var(--color-text);
+  text-decoration: none;
 }
 
-/* Навигация и корзина */
+/* Навигация и кнопки */
 .links-head-content {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 36px;
 }
 
 .links {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 30px;
 }
 
 .header-link {
@@ -43,31 +51,13 @@ header {
   padding: 6px 0;
   color: var(--color-text-muted);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   transition: color var(--duration) var(--ease);
 }
 
 .header-link:hover {
   color: var(--color-accent);
-}
-
-/* Тонкая линия, которая выезжает при наведении */
-.header-link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 1px;
-  background: var(--color-accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--duration) var(--ease);
-}
-
-.header-link:hover::after {
-  transform: scaleX(1);
 }
 
 /* Кнопки избранного и корзины рядом */
@@ -77,7 +67,6 @@ header {
   gap: 10px;
 }
 
-/* Кнопки избранного и корзины (выглядят одинаково) */
 .fav-logo,
 .cart-logo {
   position: relative;
@@ -88,29 +77,28 @@ header {
   justify-content: center;
   padding: 0;
 
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: var(--glass-sheen), var(--glass-bg);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-full);
   color: var(--color-text);
+  box-shadow: var(--shadow-sm);
 
   transition:
     background var(--duration) var(--ease),
-    border-color var(--duration) var(--ease),
     color var(--duration) var(--ease);
 }
 
 .fav-logo:hover,
 .cart-logo:hover {
-  background: var(--color-blush);
-  border-color: var(--color-blush-strong);
+  background: var(--color-surface);
   color: var(--color-accent);
 }
 
-/* Кружок с количеством товаров */
+/* Кружок с количеством */
 .cart-count {
   position: absolute;
-  top: -4px;
-  right: -4px;
+  top: -3px;
+  right: -3px;
   min-width: 20px;
   height: 20px;
   display: flex;
@@ -118,7 +106,7 @@ header {
   justify-content: center;
   padding: 0 5px;
 
-  background: var(--color-accent);
+  background: var(--gloss-accent);
   color: var(--color-on-dark);
   border: 2px solid var(--color-bg);
   border-radius: var(--radius-full);
@@ -128,97 +116,176 @@ header {
   line-height: 1;
 }
 
-/* ===== Главный баннер ===== */
-.ad {
-  min-height: 460px;
-  margin: 0 var(--gutter);
-  padding: 64px clamp(24px, 6vw, 80px);
-  display: flex;
-  align-items: center;
-
-  border-radius: var(--radius-lg);
+/* ===== Главный экран без фото ===== */
+.hero {
+  position: relative;
   overflow: hidden;
-
-  /* Слева — бежевый перелив, чтобы текст читался, справа — фото */
-  background:
-    linear-gradient(
-      90deg,
-      rgba(255, 240, 236, 0.82) 0%,
-      rgba(255, 240, 236, 0.5) 35%,
-      rgba(255, 240, 236, 0) 62%
-    ),
-    url("/1646695459_1-abrakadabra-fun-p-rozovii-fon-kosmetika-1.jpg") center / cover no-repeat,
-    var(--color-blush);
+  padding: clamp(48px, 7vw, 96px) var(--gutter) clamp(56px, 8vw, 110px);
 }
 
-.ad-text {
-  max-width: 500px;
+.hero-inner {
+  position: relative; /* выше капель */
+  z-index: 1;
+  max-width: var(--container);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(32px, 5vw, 72px);
 }
 
-.ad-text h1 {
-  margin: 0 0 16px;
+/* Огромное название — главный акцент, как «Biodance» в постах */
+.hero-title {
+  margin: 0;
   font-family: var(--font-heading);
-  font-size: clamp(42px, 5.5vw, 72px);
-  font-weight: 500;
-  line-height: 1.02;
-  letter-spacing: -0.5px;
-}
-
-.ad-text p {
-  margin: 0 0 32px;
+  font-size: clamp(64px, 10.5vw, 148px);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.02em;
   color: var(--color-text);
-  font-size: 16px;
-  line-height: 1.7;
 }
 
-/* Кнопка «К каталогу» */
+/* Подпись-«таблетка» под названием */
+.hero-pill {
+  display: inline-block;
+  margin: 22px 0 0;
+  padding: 10px 26px;
+
+  background: var(--glass-sheen), var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+
+  color: var(--color-accent);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.hero-tagline {
+  max-width: 30ch;
+  margin: 24px 0 36px;
+  color: var(--color-text-muted);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* Кнопка «Смотреть каталог» */
 .go-shop {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  min-height: 48px;
-  padding: 0 28px;
+  min-height: 54px;
+  padding: 0 34px;
 
-  background: var(--color-accent);
+  background: var(--gloss-accent);
   color: var(--color-on-dark);
-  border: 1px solid var(--color-accent);
   border-radius: var(--radius-full);
-  box-shadow: 0 8px 20px rgba(176, 71, 90, 0.3);
+  box-shadow: var(--gloss-shadow);
 
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
-  letter-spacing: 0.3px;
-  text-decoration: none; /* это ссылка, убираем подчёркивание */
+  text-decoration: none;
 
-  transition:
-    background var(--duration) var(--ease),
-    border-color var(--duration) var(--ease);
-}
-
-.go-shop svg {
-  transition: transform var(--duration) var(--ease);
+  transition: background var(--duration) var(--ease);
 }
 
 .go-shop:hover {
-  background: var(--color-accent-hover);
-  border-color: var(--color-accent-hover);
+  background: var(--gloss-accent-hover);
 }
 
-/* Стрелка чуть сдвигается вправо при наведении */
-.go-shop:hover svg {
-  transform: translateX(4px);
+/* Стеклянные плашки справа, как колонка в постах */
+.hero-panels {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-panel {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 20px 24px;
+
+  background: var(--glass-sheen), var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+}
+
+/* Каждая следующая плашка чуть сдвинута — «стопка» */
+.hero-panel:nth-child(2) {
+  margin-left: 28px;
+}
+
+.hero-panel:nth-child(3) {
+  margin-left: 56px;
+}
+
+/* Тонкая иконка в кружке */
+.hero-panel-icon {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+  border: 1px solid var(--color-blush-strong);
+  border-radius: var(--radius-full);
+}
+
+.hero-panel-title {
+  display: block;
+  margin-bottom: 2px;
+  font-family: var(--font-heading);
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.hero-panel-text {
+  display: block;
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+/* ===== Капли-пузырьки ===== */
+.drop {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  /* блик слева сверху + прозрачная середина + розовый край = капля */
+  background:
+    radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.95) 0 8%, transparent 18%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.15) 0 55%, rgba(227, 169, 184, 0.35) 75%, rgba(255, 255, 255, 0.7) 100%);
+  box-shadow:
+    inset -6px -10px 18px rgba(158, 61, 92, 0.12),
+    0 10px 30px rgba(158, 61, 92, 0.1);
+  animation: drop-float 9s ease-in-out infinite;
+}
+
+.drop-1 { width: 180px; height: 180px; top: 6%;  left: 46%; }
+.drop-2 { width: 70px;  height: 70px;  top: 70%; left: 40%; animation-delay: -3s; }
+.drop-3 { width: 120px; height: 120px; top: 62%; left: 4%;  animation-delay: -5s; }
+.drop-4 { width: 40px;  height: 40px;  top: 14%; left: 8%;  animation-delay: -2s; }
+.drop-5 { width: 260px; height: 260px; top: -60px; right: -80px; animation-delay: -6s; }
+
+/* Капли медленно «дышат» вверх-вниз */
+@keyframes drop-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
 }
 
 /* ===== Планшеты ===== */
-@media (max-width: 850px) {
-  .head-content {
-    gap: 20px;
-  }
-
-  .brand-name {
-    font-size: 30px;
-  }
-
+@media (max-width: 900px) {
   .links-head-content {
     gap: 20px;
   }
@@ -228,23 +295,35 @@ header {
   }
 
   .header-link {
-    font-size: 13px;
+    font-size: 14px;
   }
 
-  .ad {
-    min-height: 380px;
+  .hero-inner {
+    grid-template-columns: 1fr;
   }
+
+  .hero-panel:nth-child(2),
+  .hero-panel:nth-child(3) {
+    margin-left: 0;
+  }
+
+  .drop-1 { left: 70%; }
 }
 
 /* ===== Телефоны ===== */
 @media (max-width: 600px) {
+  /* на телефоне шапка не липкая, чтобы не занимать пол-экрана */
+  .site-header {
+    position: static;
+  }
+
   .head-content {
     flex-wrap: wrap;
-    gap: 14px;
+    gap: 12px;
   }
 
   .brand-name {
-    font-size: 28px;
+    font-size: 26px;
   }
 
   .links-head-content {
@@ -261,46 +340,41 @@ header {
     justify-content: space-between;
     gap: 10px;
     padding-top: 10px;
-    border-top: 1px solid var(--color-border);
+    border-top: 1px solid rgba(255, 255, 255, 0.9);
   }
 
   .header-link {
     font-size: 13px;
   }
 
-  .ad {
-    min-height: 340px;
-    padding: 40px 24px;
-    align-items: flex-end;
-
-    /* На телефоне перелив идёт снизу вверх — текст стоит внизу */
-    background:
-      linear-gradient(
-        0deg,
-        rgba(255, 240, 236, 0.9) 0%,
-        rgba(255, 240, 236, 0.6) 40%,
-        rgba(255, 240, 236, 0) 75%
-      ),
-      url("/1646695459_1-abrakadabra-fun-p-rozovii-fon-kosmetika-1.jpg") 70% center / cover no-repeat,
-      var(--color-blush);
-  }
-
-  .ad-text h1 {
-    font-size: 42px;
-  }
-
-  .ad-text p {
-    margin-bottom: 24px;
-    font-size: 15px;
-  }
-}
-
-@media (max-width: 360px) {
-  .header-link {
+  .hero-pill {
+    padding: 8px 18px;
     font-size: 12px;
   }
 
-  .ad-text h1 {
-    font-size: 36px;
+  .hero-tagline {
+    font-size: 16px;
   }
+
+  .go-shop {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-panel {
+    padding: 16px 18px;
+    gap: 14px;
+  }
+
+  .hero-panel-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .hero-panel-title {
+    font-size: 17px;
+  }
+
+  .drop-1 { width: 110px; height: 110px; top: 4%; left: 68%; }
+  .drop-5 { display: none; }
 }
