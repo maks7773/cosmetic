@@ -9,8 +9,10 @@
   justify-content: center;
   padding: 16px;
 
-  background: rgba(46, 39, 36, 0.4);
-  backdrop-filter: blur(3px);
+  /* винная дымка с размытием — сайт за окном видно, но не отвлекает */
+  background: rgba(74, 26, 44, 0.32);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 
   animation: overlay-in 0.2s ease;
 }
@@ -26,8 +28,10 @@
   overflow-y: auto;
   padding: 24px;
 
-  background: var(--color-bg);
+  background:
+    linear-gradient(170deg, #fff8fa 0%, var(--color-bg) 60%);
   color: var(--color-text);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
 
@@ -81,9 +85,10 @@
   gap: 16px;
 
   padding: 12px;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
 }
 
 /* Фотография */
@@ -96,6 +101,7 @@
   object-fit: contain;
   background: var(--color-surface-muted);
   border-radius: var(--radius-sm);
+  mix-blend-mode: multiply; /* белый фон фото растворяется в подложке */
 }
 
 /* Информация о товаре */
@@ -152,7 +158,7 @@
 }
 
 .qty-btn:hover {
-  background: var(--color-accent);
+  background: var(--gloss-accent);
   color: var(--color-on-dark);
 }
 
@@ -232,7 +238,7 @@
 .cart-total-label {
   font-family: var(--font-heading);
   font-size: 26px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .cart-total-price {
@@ -271,7 +277,7 @@
   min-height: 46px;
   padding: 0 26px;
 
-  background: var(--color-accent);
+  background: var(--gloss-accent);
   color: var(--color-on-dark);
   border: 1px solid var(--color-accent);
   border-radius: var(--radius-full);
@@ -283,7 +289,7 @@
 }
 
 .cart-empty-btn:hover {
-  background: var(--color-accent-hover);
+  background: var(--gloss-accent-hover);
   border-color: var(--color-accent-hover);
 }
 
@@ -369,4 +375,9 @@
   .cart-total-price {
     font-size: 19px;
   }
+}
+
+/* Глянцевая тень у кнопки «Перейти в каталог» */
+.cart-empty-btn {
+  box-shadow: var(--gloss-shadow);
 }
